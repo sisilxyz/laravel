@@ -12,12 +12,13 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-image: url("img/qq.png");
+                background-size: 1110px;
                 color: #636b6f;
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Hey Comic';
                 font-weight: 200;
-                height: 100vh;
-                margin: 0;
+                height: 80vh;
+                margin: 10;
             }
 
             .full-height {
@@ -45,14 +46,14 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 44px;
             }
 
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
+                font-size: 12px;
+                font-weight: 300;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
@@ -81,8 +82,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Nataryn Sisil
                 </div>
+                <div class="title m-b-md">
+                    361955401170
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
+
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -14,5 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.index');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
+    Route::get('/', 'Admin\DashboardController@index');
+    Route::resource('/kategori', 'Admin\KategoriController');
+    Route::resource('/tugas', 'Admin\TugasController');
+    Route::resource('/mahasiswa', 'Admin\MahasiswaController');
+    
+    
+    
 });
