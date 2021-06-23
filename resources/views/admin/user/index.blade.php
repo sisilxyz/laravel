@@ -71,7 +71,7 @@
                                         @foreach($allUser as $i=>$row)
                                         <tr>
                                             <td>{{++$i}}</td>
-                                            <td>{{$row->names}}</td>
+                                            <td>{{$row->name}}</td>
                                             <td>{{$row->email}}</td>
                                             <td>
                                             @if (!empty($row->getRoleNames()))

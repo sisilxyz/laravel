@@ -58,23 +58,32 @@
 
                             @endif
 
-                                <form action="{{route('roles.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <form action="{{route('users.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                                     @csrf
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama User</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtnama_users" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi Nama user Anda</small></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtnama_user" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi Nama user Anda</small></div>
                                     </div>
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Email User</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtemail_users" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi Nama user Anda</small></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtemail_user" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi  email anda</small></div>
                                     </div>
-                                        
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Password</label></div>
+                                        <div class="col-12 col-md-9"><input type="password" id="text-input" name="txtpassword_user" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi password anda</small></div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Konfirmasi Password</label></div>
+                                        <div class="col-12 col-md-9"><input type="password" id="text-input" name="txtkonfirmasiPassword_user" placeholder="Text" class="form-control"><small class="form-text text-muted">Konfirmasi password anda</small></div>
+                                    </div>
                                         
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="select" class=" form-control-label">Role</label></div>
                                             <div class="col-12 col-md-9">
-                                            <select name="optionid_role" id="select" class="form-control">
+                                            <select name="role_user" id="select" class="form-control">
                                             @foreach($allRoles as $role)
 
                                             <option value={{$role->id}}>
@@ -82,10 +91,7 @@
                                             </option>
 
                                             @endforeach                                            
-                                                    <!-- <option value="0">Please select</option>
-                                                    <option value="1">Option #1</option>
-                                                    <option value="2">Option #2</option>
-                                                    <option value="3">Option #3</option> -->
+
                                             </select>
                                          </div>
                                     </div>

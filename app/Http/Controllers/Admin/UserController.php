@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -45,6 +47,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'txtnama_user' => 'required',
+            'txtemail_user' => 'required|email|unique:users,email',
+            'txtpassword_user' => 'required|same:txtkonfirmasiPassword_user',
+            'role_user' => 'required'
+        ]);
+
+        $user=new User();
+        $user->name=$request->txtnama_user;
+        $user->email=$request->txtemail_user;
+        $user->password=Hash::make($request->txtpassword_user);
+        $user->save();
+
+        $user->assignRole($request->role_user);
+        return redirect()->route('users.index')->with ('sukses', 'User berhasil dibuat');
     }
 
     /**
@@ -67,6 +84,12 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $pagename='Edit user';
+        $user=User::find($id);
+        $allRoles=Role::all();
+        $userRole=$user->roles->pluck('id')->all();
+
+        return view('admin.user.edit', compact('pagename', 'user', 'allRoles', 'userRole'));
     }
 
     /**
@@ -79,6 +102,25 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'txtnama_user' => 'required',
+            'txtemail_user' => 'required|email',
+            //'txtpassword_user' => 'required|same:txtkonfirmasiPassword_user',
+            'role_user' => 'required'
+        ]);
+
+        $user=User::find($id);
+        $user->name=$request->txtnama_user;
+        $user->email=$request->txtemail_user;
+        if($request->txtpassword_user !=null){
+            $user->password=Hash::make($request->txtpassword_user);
+    }
+        $user->update();
+
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+
+        $user->assignRole($request->role_user);
+        return redirect()->route('users.index')->with ('sukses', 'User berhasil diupdate');
     }
 
     /**
@@ -90,5 +132,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user=User::find($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with ('sukses', 'User berhasil dihapus');
     }
 }

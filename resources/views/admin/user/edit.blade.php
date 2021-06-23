@@ -58,56 +58,52 @@
 
                             @endif
 
-                                <form action="{{route('tugas.update', $data->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <form action="{{route('users.update', $user->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                                     @method('PATCH')
                                     @csrf
                                     <div class="row form-group">
-                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama Tugas</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtnama_tugas" value="{{$data->nama_tugas}}" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi Nama Tugas Anda</small></div>
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama User</label></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtnama_user" value="{{$user->name}}" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi Nama users anda</small></div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Email User</label></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtemail_user" value="{{$user->email}}" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi Email anda</small></div>
+                                    </div>
+
+                                    
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Password</label></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtpassword_user" value="{{$user->password}}" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi password anda</small></div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Konfirmasi Password</label></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtkonfirmasiPassword_user" value="{{$user->password}}" placeholder="Text" class="form-control"><small class="form-text text-muted">Konfirmasi password anda</small></div>
                                     </div>
                                         
                                     <div class="row form-group">
-                                        <div class="col col-md-3"><label for="select" class=" form-control-label">Kategori Tugas</label></div>
+                                        <div class="col col-md-3"><label for="select" class=" form-control-label">Role</label></div>
                                             <div class="col-12 col-md-9">
-                                            <select name="optionid_kategori" id="select" class="form-control">
+                                            <select name="role_user" id="select" class="form-control">
                                             
-                                            @foreach($data_kategori as $kategori)
+                                            @foreach($allRoles as $role)
 
-                                            <option value={{$kategori->id}}
-                                                @if($kategori->id==$data->id_kategori)
+                                            <option value={{$role->id}}
+                                                @if(in_array($role->id, $userRole))
                                                     selected
                                                 @endif
                                             
                                             >
-                                                {{$kategori -> nama_kategori}}
+                                                {{$role->name}}
                                             </option>
 
                                             @endforeach
 
 
                                             </select>
-                                         </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Keterangan Tugas</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtketerangan_tugas" value="{{$data->ket_tugas}}" placeholder="Text" class="form-control"><small class="form-text text-muted">Isi Keterangan Tugas Anda</small></div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">Status Tugas</label></div>
-                                        <div class="col col-md-9">
-                                            <div class="form-check-inline form-check">
-                                                <label for="inline-radio1" class="form-check-label ">
-                                                    <input type="radio" id="inline-radio1" name="radiostatus_tugas" value="0" {{$data->status_tugas==0?'checked':''}} class="form-check-input">Masih Berjalan
-                                                </label>
-                                                <label for="inline-radio2" class="form-check-label ">
-                                                    <input type="radio" id="inline-radio2" name="radiostatus_tugas" value="1" {{$data->status_tugas==1?'checked':''}} class="form-check-input">Selesai
-                                                </label>
                                             </div>
-                                        </div>
                                     </div>
-
 
                                     <button type="submit" class="btn btn-primary btn-sm">
                                     <i class="fa fa-dot-circle-o"></i> Update
