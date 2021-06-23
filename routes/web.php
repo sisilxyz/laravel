@@ -29,6 +29,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
     Route::resource('/kategori', 'Admin\KategoriController');
     Route::resource('/tugas', 'Admin\TugasController');
     Route::resource('/roles', 'Admin\RoleController');
+    Route::resource('/users', 'Admin\UserController');
     
     
     
